@@ -1,0 +1,273 @@
+/* src/components/aboutUs/AboutUsSection.module.css */
+
+.aboutUsSection {
+  padding: 80px 20px; /* Increased padding for more breathing room */
+  background-color: #f8faff; /* Very light background */
+  font-family: 'Poppins', sans-serif; /* Consistent modern font */
+  opacity: 0; /* Hidden by default for fade-in animation */
+  transform: translateY(20px); /* Slightly moved down for slide-up effect */
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.aboutUsSection.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping on smaller screens */
+  gap: 40px; /* Space between columns */
+  align-items: center; /* Vertically align items */
+}
+
+.contentLeft {
+  flex: 2; /* Takes more space on desktop */
+  min-width: 300px; /* Minimum width before wrapping */
+  animation: slideInLeft 1s ease-out forwards; /* Animation for left content */
+  animation-delay: 0.2s; /* Delay for staggered effect */
+}
+
+.contentRight {
+  flex: 1; /* Takes less space on desktop */
+  min-width: 300px; /* Minimum width before wrapping */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* For absolute positioning of images */
+  animation: fadeIn 1s ease-out forwards; /* Animation for right content */
+  animation-delay: 0.4s;
+}
+
+/* Headings */
+.subheading {
+  font-size: 0.95em;
+  color: #00c8ff; /* Light blue accent */
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  position: relative;
+  padding-left: 20px;
+}
+
+.subheading::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 2px;
+  background-color: #00c8ff;
+}
+
+.heading {
+  font-size: 2.8em;
+  color: #07002c; /* Deep blue from your navbar */
+  margin-bottom: 30px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  border-bottom: 2px solid #e0e0e0;
+  margin-bottom: 25px;
+}
+
+.tabButton {
+  background: none;
+  border: none;
+  padding: 15px 25px;
+  font-size: 1.1em;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  transition: color 0.3s ease, border-color 0.3s ease;
+  position: relative;
+  overflow: hidden; /* For underline animation */
+}
+
+.tabButton::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; /* Position it slightly below the button */
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #00c8ff; /* Active tab underline color */
+  transform: scaleX(0); /* Hidden by default */
+  transition: transform 0.3s ease-out;
+}
+
+.tabButton.active {
+  color: #00c8ff;
+}
+
+.tabButton.active::after {
+  transform: scaleX(1); /* Show underline when active */
+}
+
+.tabButton:hover:not(.active) {
+  color: #07002c;
+}
+
+.tabContent {
+  padding: 20px 0;
+  line-height: 1.7;
+  color: #555;
+  animation: fadeIn 0.6s ease-out; /* Fade in tab content */
+}
+
+/* Checklist */
+.checklist {
+  list-style: none;
+  padding: 0;
+  margin-top: 30px;
+}
+
+.checklistItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  font-size: 1.05em;
+  color: #333;
+  font-weight: 500;
+  opacity: 0; /* Hidden for staggered animation */
+  transform: translateX(-20px);
+  animation: slideInLeft 0.7s ease-out forwards;
+}
+
+.checklistItem:nth-child(1) { animation-delay: 0.6s; }
+.checklistItem:nth-child(2) { animation-delay: 0.8s; }
+.checklistItem:nth-child(3) { animation-delay: 1.0s; }
+
+
+.checkIcon {
+  color: #00c8ff; /* Blue checkmark */
+  font-size: 1.3em;
+  margin-right: 10px;
+  flex-shrink: 0; /* Prevent icon from shrinking */
+}
+
+/* Images */
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 60%; /* Aspect ratio hack for responsive container (e.g., 60% of width for height) */
+  background-color: #f0f0f0; /* Fallback background */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15); /* Soft shadow for the main image area */
+}
+
+.mainImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Cover the container */
+  border-radius: 12px;
+  transition: transform 0.5s ease;
+}
+
+.mainImage:hover {
+  transform: scale(1.03); /* Subtle zoom on hover */
+}
+
+.secondaryImage {
+  position: absolute;
+  bottom: -20px; /* Overlap slightly */
+  right: -20px; /* Overlap slightly */
+  width: 50%; /* Adjust size as needed */
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); /* Stronger shadow for the floating image */
+  border: 4px solid white; /* White border to make it pop */
+  z-index: 5;
+  transition: transform 0.5s ease;
+}
+
+.secondaryImage:hover {
+  transform: translateY(-10px) translateX(-10px) scale(1.05); /* Float and zoom on hover */
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  .heading {
+    font-size: 2.2em;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column; /* Stack columns on mobile */
+    gap: 30px;
+  }
+  .contentLeft, .contentRight {
+    flex: none; /* Remove flex basis */
+    width: 100%; /* Take full width */
+  }
+  .heading {
+    font-size: 2em;
+    text-align: center;
+  }
+  .subheading {
+    text-align: center;
+    padding-left: 0;
+  }
+  .subheading::before {
+    display: none; /* Hide the line on mobile if it looks awkward */
+  }
+  .tabs {
+    flex-wrap: wrap; /* Allow tabs to wrap */
+    justify-content: center;
+  }
+  .tabButton {
+    padding: 12px 18px;
+    font-size: 1em;
+  }
+  .checklist {
+    text-align: left; /* Align checklist items left */
+  }
+  .checklistItem {
+    justify-content: flex-start; /* Align icon and text */
+  }
+  .imageWrapper {
+    padding-bottom: 75%; /* Adjust aspect ratio for mobile images if needed */
+  }
+  .secondaryImage {
+    width: 45%; /* Adjust size on mobile */
+    bottom: -10px;
+    right: -10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .aboutUsSection {
+    padding: 60px 15px;
+  }
+  .heading {
+    font-size: 1.8em;
+  }
+  .tabButton {
+    font-size: 0.9em;
+    padding: 10px 15px;
+  }
+}

@@ -1,0 +1,118 @@
+/* heroCarousel.css */
+
+.hero-carousel {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  margin-top:5px;
+  display: flex;
+  justify-content: center; /* Centers image horizontally */
+  align-items: center;
+}
+
+.carousel-image {
+  position: absolute;
+  width: calc(100% - 40px); /* Leave 20px on each side for shadow (total 40px) */
+  height: calc(100% - 40px);
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+}
+
+.carousel-image.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+.carousel-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  z-index: 3;
+  text-align: center;
+  text-shadow: 0 0 10px #000;
+}
+
+.carousel-overlay h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.carousel-overlay p {
+  font-size: 1.5rem;
+}
+
+/* --- New CSS for Carousel Controls --- */
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  color: white;
+  border: none;
+  padding: 15px 20px; /* Adjust padding for button size */
+  font-size: 2rem; /* Large font size for arrows */
+  cursor: pointer;
+  z-index: 4; /* Above overlay and images */
+  border-radius: 50%; 
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  user-select: none; /* Prevent text selection */
+  display: flex; /* For perfect centering of arrow icon */
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-control:hover {
+  background-color: rgba(0, 0, 0, 0.8); /* Darker on hover */
+  transform: translateY(-50%) scale(1.05); /* Slight pop effect */
+}
+
+.carousel-control.prev {
+  left: 20px; /* Position on the left side */
+}
+
+.carousel-control.next {
+  right: 20px; /* Position on the right side */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .carousel-control {
+    padding: 10px 15px;
+    font-size: 1.5rem;
+  }
+  .carousel-control.prev {
+    left: 10px;
+  }
+  .carousel-control.next {
+    right: 10px;
+  }
+  .carousel-overlay h1 {
+    font-size: 2rem;
+  }
+  .carousel-overlay p {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-control {
+    padding: 8px 12px;
+    font-size: 1.2rem;
+  }
+  .carousel-overlay h1 {
+    font-size: 1.5rem;
+  }
+  .carousel-overlay p {
+    font-size: 1rem;
+  }
+}

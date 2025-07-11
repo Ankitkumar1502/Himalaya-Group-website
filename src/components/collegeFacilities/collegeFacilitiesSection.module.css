@@ -1,0 +1,261 @@
+/* src/components/collegeFacilities/CollegeFacilitiesSection.module.css */
+
+.facilitiesSection {
+  padding: 100px 20px; /* Generous padding */
+  background: linear-gradient(135deg, #f0f8ff, #e6f2f7); /* Soft gradient background */
+  font-family: 'Poppins', sans-serif;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.facilitiesSection.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.subheading {
+  font-size: 0.9em;
+  color: #00c8ff; /* Accent blue */
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.mainTitle {
+  font-size: 2.8em;
+  color: #07002c; /* Deep blue */
+  margin-bottom: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.underline {
+  width: 80px;
+  height: 4px;
+  background-color: #00c8ff; /* Accent blue underline */
+  margin: 0 auto 60px auto; /* Center and space below title */
+  border-radius: 2px;
+}
+
+/* Top Facilities Grid (Cards) */
+.topFacilitiesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-bottom: 60px;
+}
+
+.facilityCard {
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 40px 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Soft shadow */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
+  cursor: pointer;
+  border: 1px solid transparent; /* For border transition */
+
+  opacity: 0;
+  transform: translateY(40px);
+  animation: slideUpFadeIn 0.8s ease-out forwards;
+}
+
+/* Staggered animation for top cards */
+.facilityCard.card1 { animation-delay: 0.2s; }
+.facilityCard.card2 { animation-delay: 0.4s; }
+.facilityCard.card3 { animation-delay: 0.6s; }
+
+
+.facilityCard:hover {
+  transform: translateY(-10px); /* Lift effect */
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15); /* More prominent shadow on hover */
+  border-color: #00c8ff; /* Accent border on hover */
+}
+
+.iconWrapper {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #00c8ff, #0077cc); /* Gradient background for icon */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 25px;
+  box-shadow: 0 5px 15px rgba(0, 200, 255, 0.3);
+  transition: transform 0.4s ease-out, background 0.4s ease-out;
+}
+
+.iconWrapper svg {
+  font-size: 3.2em;
+  color: white; /* White icon */
+  transition: transform 0.4s ease-out;
+}
+
+.facilityCard:hover .iconWrapper {
+  transform: rotateY(180deg); /* Flip effect for icon background */
+  background: linear-gradient(45deg, #0077cc, #00c8ff); /* Reverse gradient on hover */
+}
+
+.facilityCard:hover .iconWrapper svg {
+  transform: scale(1.1); /* Slight grow for icon */
+}
+
+.cardTitle {
+  font-size: 1.5em;
+  color: #07002c;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.cardDescription {
+  font-size: 1em;
+  color: #555;
+  line-height: 1.7;
+}
+
+/* Bottom Features Grid */
+.bottomFeaturesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  background-color: #f0faff; /* Lighter background for this section */
+  border-radius: 12px;
+  padding: 40px 20px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); /* Very subtle shadow */
+}
+
+.featureItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  border-radius: 10px;
+  cursor: pointer;
+
+  opacity: 0;
+  transform: translateY(30px);
+  animation: slideUpFadeIn 0.8s ease-out forwards;
+}
+
+/* Staggered animation for bottom features */
+.featureItem.feature1 { animation-delay: 0.8s; }
+.featureItem.feature2 { animation-delay: 1.0s; }
+.featureItem.feature3 { animation-delay: 1.2s; }
+
+
+.featureItem:hover {
+  transform: translateY(-5px); /* Lift */
+  background-color: #e6f7ff; /* Light blue tint on hover */
+}
+
+.featureIcon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #d1ecff; /* Even lighter blue for background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.featureIcon svg {
+  font-size: 2em;
+  color: #00aaff; /* Medium blue for icon */
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.featureItem:hover .featureIcon {
+  background-color: #00c8ff; /* Darker background on hover */
+}
+
+.featureItem:hover .featureIcon svg {
+  color: white; /* White icon on hover */
+  transform: rotate(10deg) scale(1.1); /* Subtle rotation and scale */
+}
+
+.featureText {
+  font-size: 1.1em;
+  color: #333;
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* Animations */
+@keyframes slideUpFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  .mainTitle {
+    font-size: 2.2em;
+  }
+  .facilityCard {
+    padding: 30px 20px;
+  }
+  .cardTitle {
+    font-size: 1.3em;
+  }
+  .cardDescription {
+    font-size: 0.95em;
+  }
+}
+
+@media (max-width: 768px) {
+  .facilitiesSection {
+    padding: 60px 15px;
+  }
+  .mainTitle {
+    font-size: 1.8em;
+  }
+  .underline {
+    margin-bottom: 40px;
+  }
+  .topFacilitiesGrid,
+  .bottomFeaturesGrid {
+    grid-template-columns: 1fr; /* Stack on mobile */
+    gap: 25px;
+  }
+  .facilityCard {
+    padding: 25px;
+  }
+  .iconWrapper {
+    width: 80px;
+    height: 80px;
+  }
+  .iconWrapper svg {
+    font-size: 2.8em;
+  }
+  .featureIcon {
+    width: 50px;
+    height: 50px;
+  }
+  .featureIcon svg {
+    font-size: 1.8em;
+  }
+  .featureText {
+    font-size: 1em;
+  }
+}

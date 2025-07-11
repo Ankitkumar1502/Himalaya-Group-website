@@ -1,25 +1,28 @@
 import './App.css';
-import Banner from './components/banner/Banner';
-import Doctors from './components/doctors/Doctors';
-import Facilities from './components/facilities/Facilities';
-import Footer from './components/footer/Footer';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Header from './components/header/Header';
 import Navbar from './components/navbar/Navbar';
-import Partners from './components/partners/Partners';
-import Services from './components/services/Services';
-import Testimonials from './components/testimonials/Testimonials';
+import HomePage from './pages/HomePage';
+import AdmissionFormPage from './pages/AdmissionFormPage';
+import ContactPage from './pages/ContactPage'
+import Footer from './components/footer/Footer'
+import ScrollToTopButton from './components/scrollToTop/ScrollToTopButton'
 
 function App() {
   return (
-    <>
+    <Router> 
+      <Header />
       <Navbar />
-      <Banner />
-      <Services />
-      <Doctors />
-      <Partners />
-      <Facilities />
-      <Testimonials />
-      <Footer />
-    </>
+
+      <Routes> 
+        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/admission-form" element={<AdmissionFormPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+      </Routes>
+      <Footer/>
+      <ScrollToTopButton />
+    </Router>
   );
 }
 

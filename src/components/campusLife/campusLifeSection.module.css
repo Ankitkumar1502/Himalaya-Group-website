@@ -1,0 +1,236 @@
+/* src/components/campusLife/CampusLifeSection.module.css */
+
+.campusLifeSection {
+  padding: 100px 20px;
+  background-color: #f8faff; /* Light, calming background */
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden; /* Prevent content overflow during animations */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.campusLifeSection.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.subheading {
+  font-size: 0.9em;
+  color: #00c8ff; /* Accent blue */
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.mainTitle {
+  font-size: 2.8em;
+  color: #07002c; /* Deep blue */
+  margin-bottom: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.underline {
+  width: 80px;
+  height: 4px;
+  background-color: #00c8ff; /* Accent blue underline */
+  margin: 0 auto 60px auto; /* Center and space below title */
+  border-radius: 2px;
+}
+
+.contentWrapper {
+  display: flex;
+  flex-wrap: wrap; /* Allows columns to stack on smaller screens */
+  justify-content: center;
+  align-items: flex-start; /* Align items to the top */
+  gap: 40px; /* Space between video and text columns */
+}
+
+.textColumnLeft,
+.textColumnRight {
+  flex: 1; /* Both text columns take equal space */
+  min-width: 280px; /* Minimum width before wrapping */
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.videoContainer {
+  flex-shrink: 0; /* Prevent video from shrinking */
+  width: 550px; /* Fixed width for video on desktop */
+  max-width: 100%; /* Ensure it doesn't overflow on small screens */
+  aspect-ratio: 16 / 9; /* Maintain 16:9 aspect ratio */
+  background-color: #000; /* Fallback for video background */
+  border-radius: 15px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); /* Stronger shadow for video */
+  overflow: hidden;
+  position: relative;
+  animation: scaleIn 0.8s ease-out forwards; /* Scale-in animation for video */
+}
+
+.videoContainer iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.videoCaption {
+  position: absolute;
+  bottom: 15px;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 8px 15px;
+  font-size: 0.9em;
+  font-weight: 500;
+  border-radius: 0 0 15px 15px;
+  text-align: center;
+}
+
+.featureItem {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  text-align: left;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+
+  opacity: 0; /* Hidden for entrance animation */
+  transform: translateY(30px);
+  animation: slideUpFadeIn 0.8s ease-out forwards;
+}
+
+/* Staggered animations for text items */
+.textColumnLeft .featureItem.leftItem1 { animation-delay: 0.4s; }
+.textColumnRight .featureItem.rightItem1 { animation-delay: 0.6s; }
+.textColumnRight .featureItem.rightItem2 { animation-delay: 0.8s; }
+
+
+.featureItem:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.iconBox {
+  flex-shrink: 0; /* Prevent icon from shrinking */
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  background: linear-gradient(45deg, #00c8ff, #0077cc);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0, 200, 255, 0.2);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.iconBox svg {
+  font-size: 2.2em;
+  color: white;
+  transition: transform 0.3s ease;
+}
+
+.featureItem:hover .iconBox {
+  background: linear-gradient(45deg, #0077cc, #00c8ff); /* Reverse gradient on hover */
+  transform: rotate(5deg); /* Slight rotate on hover */
+}
+
+.featureItem:hover .iconBox svg {
+  transform: scale(1.1); /* Icon slightly grows */
+}
+
+.textDetails h3 {
+  font-size: 1.3em;
+  color: #07002c;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.textDetails p {
+  font-size: 0.95em;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Animations */
+@keyframes slideUpFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .mainTitle {
+    font-size: 2.4em;
+  }
+  .contentWrapper {
+    flex-direction: column; /* Stack video and columns */
+    gap: 30px;
+  }
+  .videoContainer {
+    width: 100%; /* Full width on smaller screens */
+  }
+  .textColumnLeft,
+  .textColumnRight {
+    width: 100%; /* Full width when stacked */
+    min-width: unset; /* Remove min-width restriction */
+  }
+  .featureItem {
+    padding: 25px;
+  }
+  .textDetails h3 {
+    font-size: 1.2em;
+  }
+  .textDetails p {
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 576px) {
+  .campusLifeSection {
+    padding: 60px 15px;
+  }
+  .mainTitle {
+    font-size: 2em;
+  }
+  .underline {
+    margin-bottom: 40px;
+  }
+  .iconBox {
+    width: 50px;
+    height: 50px;
+  }
+  .iconBox svg {
+    font-size: 1.8em;
+  }
+}

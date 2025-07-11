@@ -1,0 +1,19 @@
+
+.admission-page-wrapper {
+  min-height: 100vh; /* Ensures the page takes full height */
+  display: flex;
+  justify-content: center; /* Centers content horizontally */
+  align-items: center; /* Centers content vertically */
+  background-color: #f0f2f5; /* Light background for the page */
+  padding: 20px; /* Add some padding around the form */
+  box-sizing: border-box; /* Include padding in element's total width and height */
+}
+
+/* If you have a sticky header/navbar, you might need to adjust margin-top */
+@media (min-width: 769px) { /* Adjust breakpoint if needed */
+    .admission-page-wrapper {
+        padding-top: 80px; /* Example: if header is 70px tall, add some buffer */
+    }
+}
+
+/* Consider adding media queries for very small screens if needed */

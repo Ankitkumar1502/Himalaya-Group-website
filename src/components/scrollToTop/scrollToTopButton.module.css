@@ -1,0 +1,62 @@
+
+.scrollToTopButton {
+  position: fixed; /* Stays in place when scrolling */
+  bottom: 30px; /* Distance from bottom */
+  right: 30px; /* Distance from right */
+  background: linear-gradient(135deg, #00c8ff, #0077cc); /* Trendy gradient background */
+  color: white;
+  border: none;
+  border-radius: 50%; /* Makes it circular */
+  width: 55px; /* Size of the button */
+  height: 55px;
+  font-size: 2.2em; /* Size of the arrow icon */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Soft shadow */
+  opacity: 0; /* Initially hidden */
+  visibility: hidden; /* Also hidden from screen readers when not visible */
+  transform: translateY(20px); /* Start slightly off-screen */
+  transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out, transform 0.4s ease-in-out;
+  z-index: 1000; /* Ensure it's above other content */
+}
+
+.scrollToTopButton.show {
+  opacity: 1; /* Fully visible */
+  visibility: visible;
+  transform: translateY(0); /* Slide into place */
+}
+
+.scrollToTopButton:hover {
+  background: linear-gradient(135deg, #00aaff, #0066bb); /* Slightly darker gradient on hover */
+  transform: translateY(-5px); /* Lift effect on hover */
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4); /* More pronounced shadow on hover */
+}
+
+.scrollToTopButton:active {
+  transform: translateY(0px) scale(0.95); /* Slight press effect on click */
+  background: linear-gradient(135deg, #0088cc, #005599); /* Even darker on active */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .scrollToTopButton {
+    width: 45px;
+    height: 45px;
+    font-size: 1.8em;
+    bottom: 20px;
+    right: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .scrollToTopButton {
+    width: 40px;
+    height: 40px;
+    font-size: 1.6em;
+    bottom: 15px;
+    right: 15px;
+  }
+}

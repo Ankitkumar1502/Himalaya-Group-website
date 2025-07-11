@@ -1,0 +1,111 @@
+/* src/pages/ContactPage.module.css */
+
+.contactPage {
+  padding: 100px 20px; /* Adjust padding to leave space for header/footer */
+  min-height: 80vh; /* Ensure it takes up enough vertical space */
+  background-color: #f8faff; /* Light background */
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  max-width: 900px;
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+  text-align: center;
+}
+
+.title {
+  font-size: 3em;
+  color: #07002c; /* Deep blue */
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.description {
+  font-size: 1.1em;
+  color: #666;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.contactDetails {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.contactItem {
+  background-color: #eef7ff; /* Very light blue background for items */
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contactItem:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.itemTitle {
+  font-size: 1.4em;
+  color: #0077cc; /* Medium blue */
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.itemContent {
+  font-size: 1em;
+  color: #555;
+  line-height: 1.6;
+}
+
+.itemContent a {
+  color: #00c8ff; /* Accent blue for links */
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.itemContent a:hover {
+  color: #00aadd; /* Darker blue on hover */
+  text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .contactPage {
+    padding: 80px 15px;
+  }
+  .container {
+    padding: 30px;
+  }
+  .title {
+    font-size: 2.5em;
+  }
+  .description {
+    font-size: 1em;
+  }
+  .contactDetails {
+    grid-template-columns: 1fr; /* Stack items on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 2em;
+  }
+  .contactItem {
+    padding: 20px;
+  }
+  .itemTitle {
+    font-size: 1.2em;
+  }
+}

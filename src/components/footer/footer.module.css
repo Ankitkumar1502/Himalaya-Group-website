@@ -1,0 +1,278 @@
+/* src/components/footer/Footer.module.css */
+
+.footer {
+  background-color: #07002c; /* Deep blue from the second image */
+  color: #e0f0ff; /* Light bluish-white text */
+  font-family: 'Poppins', sans-serif;
+  padding-top: 60px; /* Padding for the main content area */
+  border-top: 5px solid #00c8ff; /* A thin accent line at the top */
+  position: relative;
+  overflow: hidden; /* For any potential background effects */
+}
+
+/* Optional: Add a subtle background pattern */
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('data:image/svg+xml;utf8,<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="1.5" fill="%230077cc" fill-opacity="0.1"/></svg>'); /* Small, subtle dots */
+  background-size: 20px 20px;
+  opacity: 0.3;
+  z-index: 0;
+}
+
+
+.footerContent {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px 40px; /* Adjust bottom padding for separation from bottom bar */
+  position: relative; /* Above ::before */
+  z-index: 1;
+}
+
+.footerColumn {
+  flex: 1; /* Allows columns to grow and shrink */
+  min-width: 250px; /* Minimum width before wrapping */
+  margin-bottom: 30px;
+  padding: 0 15px; /* Internal padding for columns */
+  box-sizing: border-box;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.logo {
+  height: 60px; /* Adjust logo height as needed */
+  width: auto;
+  margin-right: 15px;
+  filter: brightness(1.2); /* Make it pop a bit on dark background */
+}
+
+.logoText {
+  font-size: 1.6em;
+  font-weight: 700;
+  color: #ffffff; /* White for main text */
+  line-height: 1.2;
+}
+
+.columnTitle {
+  font-size: 1.5em;
+  font-weight: 600;
+  color: #00c8ff; /* Accent color for titles */
+  margin-bottom: 25px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.columnTitle::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50px;
+  height: 3px;
+  background-color: #00c8ff; /* Underline for titles */
+  border-radius: 2px;
+}
+
+.contactInfo {
+  font-size: 0.95em;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  color: #c9e0ff; /* Slightly lighter text for info */
+}
+
+.footerLinksList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footerLinksList li {
+  margin-bottom: 10px;
+}
+
+.footerLink {
+  color: #c9e0ff; /* Link color */
+  text-decoration: none;
+  font-size: 0.95em;
+  transition: color 0.3s ease, transform 0.3s ease;
+  display: inline-block; /* To allow transform on hover */
+  position: relative;
+  padding-left: 15px; /* Space for custom bullet */
+}
+
+.footerLink::before {
+  content: '\2022'; /* Unicode bullet point */
+  color: #00c8ff; /* Accent color for bullet */
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.footerLink:hover {
+  color: #ffffff; /* Brighter on hover */
+  transform: translateX(5px); /* Slide effect */
+}
+
+.loginButtons {
+  margin-top: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.loginButton {
+  background-color: #00c8ff; /* Blue button */
+  color: #07002c; /* Dark text on button */
+  padding: 10px 18px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9em;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 200, 255, 0.3);
+}
+
+.loginButton:hover {
+  background-color: #00aaff; /* Darker blue on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 200, 255, 0.4);
+}
+
+/* --- Footer Bottom Bar --- */
+.footerBottomBar {
+  background-color: #04001c; /* Even darker blue for the bottom bar */
+  padding: 20px 0;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.9em;
+  color: #a0c0ff; /* Slightly faded text */
+  position: relative;
+  z-index: 1; /* Ensure it's above the pseudo-element background */
+}
+
+.footerBottomBar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Allow wrapping on small screens */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.bottomBarLinks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+  justify-content: center; /* Center items if they wrap */
+}
+
+.bottomBarLinks li {
+  margin: 5px 0; /* Adjust margin for wrapped items */
+}
+
+.bottomBarLinks .footerLink {
+  color: #a0c0ff;
+  padding-left: 0; /* No bullet for bottom bar links */
+}
+
+.bottomBarLinks .footerLink::before {
+  display: none;
+}
+
+.bottomBarLinks .footerLink:hover {
+  color: #ffffff;
+  transform: none; /* No slide effect for bottom links */
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+  .footerContent {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .footerColumn {
+    min-width: unset;
+    width: 100%; /* Take full width on smaller screens */
+    margin-bottom: 40px;
+    padding: 0; /* Remove internal padding on smaller screens */
+  }
+  .logoContainer {
+    justify-content: center;
+  }
+  .columnTitle {
+    text-align: center;
+  }
+  .columnTitle::after {
+    left: 50%;
+    transform: translateX(-50%); /* Center underline */
+  }
+  .contactInfo,
+  .footerLinksList,
+  .loginButtons {
+    align-items: center;
+    justify-content: center;
+    display: flex; /* Make lists/paragraphs flex for centering */
+    flex-direction: column;
+  }
+  .footerLinksList li,
+  .contactInfo {
+    text-align: center;
+  }
+  .footerLink {
+    padding-left: 0;
+  }
+  .footerLink::before {
+    display: none; /* Remove bullets on small screens for cleaner look */
+  }
+  .footerBottomBar .container {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding-top: 40px;
+  }
+  .logo {
+    height: 50px;
+  }
+  .logoText {
+    font-size: 1.4em;
+  }
+  .columnTitle {
+    font-size: 1.3em;
+    margin-bottom: 20px;
+  }
+  .contactInfo,
+  .footerLink {
+    font-size: 0.9em;
+  }
+  .loginButton {
+    padding: 8px 15px;
+    font-size: 0.85em;
+  }
+  .footerBottomBar {
+    padding: 15px 0;
+    font-size: 0.85em;
+  }
+  .bottomBarLinks {
+    gap: 15px;
+  }
+}
