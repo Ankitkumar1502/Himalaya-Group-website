@@ -1,0 +1,81 @@
+/* src/components/announcementStrip/AnnouncementStrip.module.css */
+
+.announcementStrip {
+  width: 100%;
+  background-color: #ffcc00; /* Bright, eye-catching yellow/gold */
+  color: #07002c; /* Dark text for contrast */
+  padding: 2px 0; /* Thin strip */
+  font-size: 0.95em;
+  font-weight: 600;
+  overflow: hidden; /* Crucial for marquee effect */
+  white-space: nowrap; /* Keep content on a single line */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow below the strip */
+  position: sticky; /* Makes it stick below the navbar */
+  top: 60px; /* Adjust this value based on your Navbar's height + Header's height if any */
+            /* If your Navbar is 60px tall, this will place it right below */
+  z-index: 999; /* Ensure it's above other page content but below navbar */
+  text-align: center; /* Fallback for content */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Start content from left */
+}
+
+.marqueeContent {
+  display: inline-block; /* Allows content to flow horizontally */
+  animation: marquee 30s linear infinite; /* Adjust duration for speed */
+  padding-left: 100%; /* Start content off-screen to the right */
+}
+
+.announcementStrip.paused .marqueeContent {
+  animation-play-state: paused; /* Pause animation on hover */
+}
+
+.messageItem {
+  margin-right: 50px; /* Space between messages */
+  display: inline-block; /* Ensure messages are separate blocks */
+  padding: 0 10px; /* Small internal padding for messages */
+  transition: color 0.3s ease;
+}
+
+.messageItem:hover {
+    color: #e0f0ff; /* Subtle text color change on hover */
+}
+
+/* Keyframe animation for continuous scrolling */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%); /* Scrolls content to the left */
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .announcementStrip {
+    font-size: 0.85em;
+    padding: 6px 0;
+    top: 50px; /* Adjust top for smaller navbar height on mobile */
+  }
+  .messageItem {
+    margin-right: 30px;
+  }
+  .marqueeContent {
+    animation-duration: 20s; /* Faster scroll on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .announcementStrip {
+    font-size: 0.8em;
+    padding: 5px 0;
+    top: 45px; /* Further adjust top for very small screens */
+  }
+  .messageItem {
+    margin-right: 20px;
+  }
+  .marqueeContent {
+    animation-duration: 15s; /* Even faster scroll */
+  }
+}

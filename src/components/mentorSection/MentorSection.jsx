@@ -44,6 +44,7 @@ const MentorSection = () => {
       name: "Uma Shankar",
       role: "Chairman, Himalaya Group of Institutions",
       image: umaShankarImage,
+      phone: "+91-9334767990",
       bio: `Medical, Pharmacy, ITI, Paramedical, Nursing,Law , Professional and Educational Courses —under the Himalaya Group of Institutions:
 It is with great pride and heartfelt joy that I welcome you to the Himalaya Group of Institutions—a vibrant hub of learning, innovation, and excellence.
 Whether you’ve joined us in Medical, Pharmacy, ITI, Paramedical, Nursing,Law or Professional and Educational Colleges, you are now part of a diverse and dynamic community that is united by a shared commitment to knowledge, service, and personal growth.

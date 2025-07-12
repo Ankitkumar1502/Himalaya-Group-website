@@ -7,12 +7,14 @@ import AdmissionFormPage from './pages/AdmissionFormPage';
 import ContactPage from './pages/ContactPage'
 import Footer from './components/footer/Footer'
 import ScrollToTopButton from './components/scrollToTop/ScrollToTopButton'
+import AnnouncementStrip from './components/announcementStrip/AnnouncementStrip'
 
 function App() {
   return (
     <Router> 
       <Header />
       <Navbar />
+      <AnnouncementStrip />
 
       <Routes> 
         <Route path="/" element={<HomePage />} />
