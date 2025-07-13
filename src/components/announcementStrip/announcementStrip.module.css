@@ -62,7 +62,7 @@
     margin-right: 30px;
   }
   .marqueeContent {
-    animation-duration: 20s; /* Faster scroll on smaller screens */
+    animation-duration:30s; /* Faster scroll on smaller screens */
   }
 }
 

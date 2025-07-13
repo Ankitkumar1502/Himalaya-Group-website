@@ -1,3 +1,4 @@
+/* Base styles for larger screens (default desktop/tablet view) */
 .side-panel {
   position: fixed;
   top: 40%;
@@ -5,29 +6,33 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  z-index: 1000;
+  z-index: 10000;
+  /* Add some minimal padding to the right for spacing from the edge */
+  padding-right: 5px; 
 }
 
 /* Fully expanded buttons */
 .side-button {
-  width: 180px;
+  width: 180px; /* Default width for larger screens */
   padding: 8px 16px; 
   color: white;
   font-weight: 600;
   font-size: 14px;
   border-radius: 30px 0 0 30px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.);
   display: flex;
   align-items: center;
   gap: 6px;
   transition: all 0.3s ease;
   cursor: pointer;
+  text-decoration: none; /* Ensure no underline on links */
+  color: inherit; /* Inherit color, then specifically set white for text within .label */
 }
 
 /* Hover effect (brightness + slight scale) */
 .side-button:hover {
-  filter: brightness(1.2);
-  transform: translateX(-5px);
+  filter: brightness(1.3);
+  transform: translateX(-9px);
 }
 
 /* Color variants */
@@ -44,27 +49,102 @@
   font-size: 18px;
 }
 
-/* src/components/side/sidePanel.css */
-
-/* ... existing styles ... */
-
-.side-button {
-  /* ... your existing styles for background, padding, display, etc. ... */
-  text-decoration: none; /* Crucial: removes underline from links */
-  color: inherit; /* Ensures text color is inherited */
-  /* If you had specific hover/active states for a div, you might need to adjust them for :hover and :active on the Link directly */
-}
-
-/* If you target the span.label for color, that's fine, but ensure the base link doesn't have default blue */
+/* Ensure the label text is white */
 .side-button .label {
-    /* ... your existing label styles ... */
-    color: white; /* Ensure text is white as per your original design */
+  color: white; 
 }
 
-/* Ensure the Link itself behaves like a block/flex item if it's wrapping everything */
+/* If using React Router's Link or similar, ensure it behaves like a flex item */
 .side-panel a.side-button {
-    display: flex; /* Or block, as per your layout */
-    align-items: center;
-    justify-content: flex-start; /* Or center if preferred */
-    /* ... other flex/display properties ... */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* ------------------------------------------------------------- */
+/* MEDIA QUERIES FOR DIFFERENT SCREEN SIZES                      */
+/* Goal: Make the panel and buttons smaller, without affecting main content flow. */
+/* ------------------------------------------------------------- */
+
+/* Adjust for medium-sized screens (e.g., tablets in portrait, larger phones) */
+@media (max-width: 992px) { 
+  .side-panel {
+    gap: 8px; /* Slightly reduce gap */
+    /* top: 38%; Adjust top if it feels too high/low */
+  }
+
+  .side-button {
+    width: 130px; /* Make buttons narrower */
+    padding: 6px 10px; /* Reduce padding */
+    font-size: 12px; /* Slightly smaller font */
+    gap: 5px; /* Reduce icon/text gap */
+  }
+
+  .icon-only {
+    font-size: 16px; /* Slightly smaller icon */
+  }
+}
+
+/* Adjust for smaller mobile screens (e.g., phones in portrait and some tablets) */
+@media (max-width: 768px) { 
+  .side-panel {
+    gap: 6px; /* Further reduce gap */
+    padding-right: 3px; /* Minimal padding */
+    top: 30%; /* Shift up to give more space below, or adjust as needed */
+  }
+
+  .side-button {
+    width: 100px; /* Significantly narrower buttons */
+    padding: 5px 8px; /* Smaller padding */
+    font-size: 11px; /* Smaller font */
+    border-radius: 15px 0 0 15px; /* Adjust border-radius if needed for new size */
+    gap: 4px; /* Even smaller gap */
+  }
+
+  .icon-only {
+    font-size: 14px; /* Smaller icon */
+  }
+}
+
+/* For very small mobile screens (e.g., 320px - 414px wide) */
+@media (max-width: 480px) { 
+  .side-panel {
+    gap: 5px; /* Minimal gap */
+    padding-right: 2px; /* Very minimal padding */
+    top: 25%; /* Potentially move it up to leave more space at the bottom */
+  }
+
+  .side-button {
+    width: 60px; /* Make buttons very narrow, primarily showing icons */
+    padding: 8px 5px; /* Compact padding for icon-only feel */
+    font-size: 0; /* Hide the text label completely */
+    gap: 0; /* No gap needed if text is hidden */
+    justify-content: center; /* Center the icon */
+    border-radius: 50%; /* Make them circular or more compact if desired */
+   
+  }
+  
+  /* Show only icon on very small screens, hide the label */
+  .side-button .label {
+    display: none; 
+  }
+
+  .icon-only {
+    font-size: 20px; /* Make icons larger and more prominent when text is hidden */
+  }
+  
+  /* Reset hover for compact buttons if they are icon-only */
+  .side-button:hover {
+    filter: none; /* Remove brightness hover effect */
+    transform: none; /* Remove transform hover effect */
+    background: rgba(0, 0, 0, 0.05); /* Subtle hover background for icon-only */
+  }
+
+  /* Specific color adjustments for icon-only buttons if background is removed */
+  .side-button.blue .icon-only {
+    color: #003366; 
+  }
+  .side-button.red .icon-only {
+    color: #c70000;
+  }
 }

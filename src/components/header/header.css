@@ -1,3 +1,4 @@
+/* Base styles for Laptop/Large Screens (Default) */
 .top-header {
   display: flex;
   align-items: center;
@@ -5,12 +6,12 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  flex-wrap: wrap; /* allows stacking on small screens */
+  /* flex-wrap: wrap; - Remove this for larger screens, as it will break your layout if space is tight. We'll handle wrapping specifically in media queries if needed. */
 }
 
 .logo-section {
-  width: 25%;
-  min-width: 150px;
+  width: 25%; /* Original width for large screens */
+  min-width: 150px; /* Original min-width, good for preventing logo from becoming too small */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,14 +20,14 @@
 
 .logo-section img {
   width: 100%;
-  max-width: 140px;
+  max-width: 140px; /* Original max-width */
   height: auto;
   object-fit: contain;
 }
 
 .banner-section {
-  width: 75%;
-  min-width: 250px;
+  width: 75%; /* Original width for large screens */
+  min-width: 250px; /* Original min-width */
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -39,19 +40,48 @@
   object-fit: contain;
 }
 
-@media (max-width: 768px) {
-  .top-header {
-    flex-direction: column;
-    align-items: center;
+/* ------------------------------------------------------------- */
+/* MEDIA QUERIES FOR DIFFERENT SCREEN SIZES                      */
+/* ------------------------------------------------------------- */
+
+/* Medium Screens: Logo takes very less space at the top */
+/* This media query will target devices from 769px up to 992px (typical tablet landscape/small laptop) */
+@media (max-width: 992px) {
+  .logo-section {
+    width: 15%; /* Reduce width for logo section */
+    min-width: 80px; /* Allow it to be smaller, but not disappear */
+    padding: 3px; /* Reduce padding around logo */
   }
 
-  .logo-section, .banner-section {
-    width: 100%;
-    justify-content: center;
-    text-align: center;
+  .logo-section img {
+    max-width: 80px; /* Make the logo image itself smaller */
+  }
+
+  .banner-section {
+    width: 85%; /* Expand banner to fill remaining space */
+    min-width: unset; /* Remove min-width to allow it to shrink more */
+    justify-content: center; /* Center banner if needed or keep flex-start */
+    padding: 3px;
+  }
+}
+
+/* Phones: Logo disappears, and only banner shows */
+/* This media query will target devices 768px and smaller (all phone sizes) */
+@media (max-width: 768px) {
+  .logo-section {
+    display: none; /* Hide the entire logo section */
+  }
+
+  .banner-section {
+    width: 100%; /* Make banner section take full width */
+    justify-content: center; /* Center the banner image */
+    padding: 5px; /* Adjust padding as needed */
   }
 
   .banner-section img {
-    max-width: 100%;
+    max-width: 100%; /* Ensure banner scales within its new 100% width */
+    height: auto;
   }
+
+ 
 }

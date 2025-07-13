@@ -1,4 +1,4 @@
-/* Base styles */
+/* Base styles (desktop first approach - unchanged from previous solution unless specified) */
 .sticky-navbar {
   position: sticky;
   top: 0;
@@ -20,9 +20,17 @@
   color: white;
   font-weight: bold;
   font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-/* Hamburger button */
+.nav-brand-logo {
+  height: 30px;
+  width: auto;
+  vertical-align: middle;
+}
+
 .hamburger {
   display: none;
   flex-direction: column;
@@ -37,7 +45,10 @@
   transition: all 0.3s ease;
 }
 
-/* Nav Links */
+.hamburger .bar.open:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.hamburger .bar.open:nth-child(2) { opacity: 0; }
+.hamburger .bar.open:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
 .nav-links {
   display: flex;
   list-style: none;
@@ -65,8 +76,8 @@
   color: #00c8ff;
 }
 
-/* Dropdown */
-.dropdown-menu {
+/* Dropdown (Desktop Specific) */
+.dropdown-menu.desktop-dropdown {
   display: none;
   position: absolute;
   top: 100%;
@@ -79,36 +90,48 @@
   flex-direction: column;
   padding: 10px 0;
   z-index: 1000;
-  max-height: 300px; /* Adjust this value as needed */
-  overflow-y: auto; /* This makes it scrollable */
+  max-height: 300px;
+  overflow-y: auto;
 }
 
-.dropdown-menu li {
+.dropdown-menu.desktop-dropdown li {
   list-style: none;
 }
 
-.dropdown:hover .dropdown-menu {
+.dropdown:hover .dropdown-menu.desktop-dropdown {
   display: flex;
 }
 
-.dropdown-menu li a {
+.dropdown-menu.desktop-dropdown li a {
   color: black;
   padding: 8px 20px;
   font-weight: 500;
   transition: 0.2s;
 }
 
-.dropdown-menu li a:hover {
+.dropdown-menu.desktop-dropdown li a:hover {
   color: #0077cc;
   font-weight: bold;
 }
 
-/* Responsive */
+/* Off-canvas sidebar and overlay (HIDDEN by default on desktop) */
+.off-canvas-sidebar,
+.off-canvas-overlay {
+  display: none;
+}
+
+
+/* ------------------------------------------------------------- */
+/* Responsive Styles (Mobile Specific)                           */
+/* ------------------------------------------------------------- */
+
 @media (max-width: 768px) {
+  /* Hamburger (visible on mobile) */
   .hamburger {
     display: flex;
   }
 
+  /* Main Nav Links (Mobile Menu) */
   .nav-links {
     display: none;
     flex-direction: column;
@@ -116,25 +139,139 @@
     background-color: #07002c;
     width: 100%;
     margin-top: 15px;
-    padding-left: 20px;
+    padding-left: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 999;
+    height: auto;
+    overflow-y: auto; /* Allow the main mobile menu itself to scroll */
+    max-height: calc(100vh - 100px);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
   }
 
   .nav-links.show-menu {
     display: flex;
   }
 
-  .dropdown-menu {
-    position: static;
-    box-shadow: none;
-    background: #eee;
-    margin-left: 15px;
-    padding: 0;
-    display: none;
+  .nav-links li {
+    width: 100%;
   }
 
-  .dropdown:hover .dropdown-menu {
-    display: none; /* disable hover dropdown on mobile */
+  .nav-links li a {
+    padding: 12px 20px;
+    color: white;
+    width: 100%;
+    box-sizing: border-box;
   }
 
-  /* Optional: enable dropdown with click if needed (not used here) */
+  .nav-links li a:hover {
+    transform: none;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Hide the desktop dropdown on mobile explicitly */
+  .dropdown-menu.desktop-dropdown {
+    display: none !important;
+  }
+
+  /* Brand and Logo adjustments for mobile */
+  .brand {
+    font-size: 16px;
+    gap: 5px;
+  }
+  .nav-brand-logo {
+    height: 25px;
+  }
+
+  /* ------------------------------------------------------------- */
+  /* Off-Canvas Sidebar for "Our Colleges" on Mobile               */
+  /* ------------------------------------------------------------- */
+  .off-canvas-sidebar {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Start off-screen to the right */
+    width: 80%;
+    max-width: 320px;
+    height: 100%;
+    background-color: #1a2a4b;
+    z-index: 1002; /* Higher than overlay */
+    box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+    transition: right 0.3s ease-out;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .off-canvas-sidebar.open {
+    right: 0; /* Slide into view */
+  }
+
+  .off-canvas-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #07002c;
+    color: white;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .off-canvas-header h3 {
+    margin: 0;
+    font-size: 18px;
+  }
+
+  .close-off-canvas {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0 5px;
+  }
+
+  .off-canvas-links {
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+    overflow-y: auto; /* IMPORTANT: This makes the college list scrollable */
+    flex-grow: 1;
+  }
+
+  .off-canvas-links li a {
+    color: white;
+    text-decoration: none;
+    padding: 12px 20px;
+    display: block;
+    transition: background-color 0.2s ease;
+  }
+
+  .off-canvas-links li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Overlay that appears behind the off-canvas menu */
+  .off-canvas-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1001; /* Behind off-canvas sidebar, but above everything else */
+    /* IMPORTANT: pointer-events controlled by JS via display: block/none */
+  }
+
+  .off-canvas-overlay.open {
+    display: block; /* Show and block pointer events when open */
+  }
+}
+
+/* Global body overflow fix (Crucial for preventing background scroll) */
+/* This class is added to the <body> when any menu is open */
+body.menu-open {
+  overflow: hidden; /* Prevents scrolling on body */
+  position: fixed; /* Prevents content from jumping when scrollbar disappears */
+  width: 100%; /* Ensures width remains 100% when position: fixed is applied */
 }
